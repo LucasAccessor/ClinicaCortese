@@ -23,10 +23,22 @@
 	<%- defineContent("styles") %>
 </head>
 <body>
-	
+
+	<!-- 
+	<div class="container-fluid fundoNav">
+		<div class="row">
+			<div class="col-md-2">
+				<a href="/"><img src="../public/imagens/logo.png"></a>
+			</div>
+			<div class="col-md-9 col-links">
+				<a class="link-nav" href="/agendamento"> agendamento </a>
+			</div> 
+		</div>
+	</div>	
+	-->
 	<nav class="navbar fixed-top navbar-light navegacao" style="background-color: #53505E;">
 		<a class="navbar-brand justify-content-center" href="/">
-		  <img src="../public/imagens/logo.jpg" width="50" height="50" alt="">
+		  <img src="../public/imagens/logo.png" width="75" height="75" alt="">
 		</a>
 		<ul class="nav justify-content-end">
 			<li class="nav-item">
@@ -34,11 +46,30 @@
 			</li>
 		  </ul>
 	</nav>
-
+	
 	
 
 	<%- body %>
 
 	<%- defineContent("scripts") %>
+
+	<div class="footer">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-3" style="margin-right: 20px;">
+					<img src="../public/imagens/logoEmpty.png" id="logoFooter">
+				</div>
+
+				<div class="col-md-4">
+					<h4>Clínica Cortese</h4>
+					<p class="fontFooter">A empresa Clinica Cortese S/s, que tem a razão social CLINICA CORTESE S/S, está presente no segmento de Clínicas e Laboratórios e foi fundada em 06/11/2017.</p>
+					<p class="fontFooter">A empresa está localizada na Rua Virgilio Varzea, 58, no bairro Itaim Bibi, em São Paulo-SP, CEP 04534-050</p>
+					<p class="fontFooter">(11) 3168-3554</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </body>
 </html>

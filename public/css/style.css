@@ -1,10 +1,12 @@
+/* nativo */
 body{
     font-family: 'Montserrat', sans-serif;  
     background-color: #53505E;
 }
 h1{
-    font-weight: 600;
+    font-weight: 700;
 }
+/* fundos */
 .landing{
     background-image: url(../imagens/fundoConsultorio.jpg);
     background-repeat: no-repeat;
@@ -14,7 +16,56 @@ h1{
     text-align: center;
     color: white;
 }
+.part2{
+    background-color: #faf9f9;
+    padding: 70px 140px;
+}
+.part3{
+    background-color: #faf9f9;
+    padding: 70px;
+}
+.footer{
+    background-color: #292929;
+    color: #FAFAFA;
+    padding: 30px;
+}
+/* classes */
 .agendamento{
     padding: 100px 140px;
     text-align: center;
+}
+.titles{
+    font-weight: 700;
+    color: #1C578B;
+
+}
+.col-sm-4 {
+    padding: 15px;
+        
+    }
+.fundo-coluna1{
+    background-color: white;
+    padding: 10px;
+        
+}
+.fundo-coluna2{
+    background-color: white;
+    padding: 10px;
+}
+.linha {
+	border-color: #1EA1F9;
+	border-radius: 2px;
+	max-width: 50px;
+	margin: 15px 0px 15px 0px;
+}
+.fontFooter{
+    font-weight: 200;
+    font-size: small;
+}
+/* IDs */
+#logoFooter{
+    max-width: 250px;
+}
+#footerImage{
+    margin-right: 50px;
 }
