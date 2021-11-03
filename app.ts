@@ -1,3 +1,4 @@
 ﻿import app = require("teem");
 
-app.run();
+app.run({
+});
