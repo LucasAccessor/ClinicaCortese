@@ -15,19 +15,23 @@ h1{
     padding: 200px 140px;
     text-align: center;
     color: white;
+    margin: 0px auto;
 }
 .part2{
     background-color: #faf9f9;
     padding: 70px 140px;
+    margin: 0px auto;
 }
 .part3{
     background-color: #faf9f9;
     padding: 70px;
+    margin: 0px auto;
 }
 .footer{
     background-color: #292929;
     color: #FAFAFA;
     padding: 30px;
+    margin: 0px auto;
 }
 /* classes */
 .agendamento{
@@ -65,6 +69,7 @@ h1{
 /* IDs */
 #logoFooter{
     max-width: 250px;
+    margin: 0px auto;
 }
 #footerImage{
     margin-right: 50px;
