@@ -1,10 +1,20 @@
 /* nativo */
 body{
-    font-family: 'Montserrat', sans-serif;  
-    background-color: #53505E;
+    font-family: 'Montserrat', sans-serif !important;  
+    background-color: #F1F1F1 !important;
 }
 h1{
-    font-weight: 700;
+    font-weight: 700 !important;
+}
+h5{
+    font-weight: 700 !important;
+}
+img{
+    max-width: 100px;
+    margin: 0px auto;
+}
+a{
+    text-decoration: none;
 }
 /* fundos */
 .landing{
@@ -12,36 +22,39 @@ h1{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    padding: 200px 140px;
+    padding: 200px 0px;
     text-align: center;
     color: white;
     margin: 0px auto;
 }
 .part2{
-    background-color: #faf9f9;
-    padding: 70px 140px;
+    background-color: #F1F1F1;
+    padding: 35px 0px;
     margin: 0px auto;
 }
 .part3{
-    background-color: #faf9f9;
-    padding: 70px;
+    background-color: #F1F1F1;
+    padding: 35px 0px;
     margin: 0px auto;
 }
 .footer{
     background-color: #292929;
     color: #FAFAFA;
-    padding: 30px;
+    padding: 30px 0px;
     margin: 0px auto;
 }
 /* classes */
 .agendamento{
-    padding: 100px 140px;
+    padding: 100px 0px;
     text-align: center;
+}
+.limitador{
+    max-width: 1200px;	
+    margin: 0px auto;
 }
 .titles{
     font-weight: 700;
     color: #1C578B;
-
 }
 .col-sm-4 {
     padding: 15px;
@@ -56,21 +69,42 @@ h1{
     background-color: white;
     padding: 10px;
 }
+.spccard{
+    padding: 10px;	
+}
+.card{
+    padding: 20px;
+    color: #252620;
+    text-align: left;
+}
 .linha {
-	border-color: #1EA1F9;
+	border-color: #4e97c7;
 	border-radius: 2px;
-	max-width: 50px;
+	max-width: 30px;
 	margin: 15px 0px 15px 0px;
 }
 .fontFooter{
     font-weight: 200;
     font-size: small;
 }
+.fundoNav{
+    background-color: #7A7A7A;
+}
+.agendamentoNav{
+    padding: 10px !important;
+}
+.navLink{
+    color: #90C4F1 !important;
+}
 /* IDs */
 #logoFooter{
-    max-width: 250px;
+    max-width: 100%;
     margin: 0px auto;
 }
 #footerImage{
     margin-right: 50px;
+}
+#logoNav{
+    max-width: 100%;
+    width: 50px;
 }

@@ -24,22 +24,25 @@
 </head>
 <body>
 
-	<!-- 
+		<!-- 
 	<div class="container-fluid fundoNav">
 		<div class="row">
 			<div class="col-md-2">
-				<a href="/"><img src="../public/imagens/logo.png"></a>
+				<a href="/" style="text-align: center;"><img src="../public/imagens/logo.png" id="logoNav"></a>
 			</div>
 			<div class="col-md-9 col-links">
 				<a class="link-nav" href="/agendamento"> agendamento </a>
 			</div> 
 		</div>
 	</div>	
-	-->
+-->
+<!--
 	<nav class="navbar fixed-top navbar-light navegacao" style="background-color: #53505E;">
-		<a class="navbar-brand justify-content-center" href="/">
-		  <img src="../public/imagens/logo.png" width="75" height="75" alt="">
-		</a>
+		<ul class="nav justify-content-center">
+			<li class="nav-item">
+				<a class="navbar-brand" href="/"> <img src="../public/imagens/logo.png" width="75" height="75" alt=""></a>
+			</li>
+		</ul>
 		<ul class="nav justify-content-end">
 			<li class="nav-item">
 			  <a class="nav-link" href="/agendamento">Agendamento</a>
@@ -47,10 +50,21 @@
 		  </ul>
 	</nav>
 	
+-->
+	<ul class="nav justify-content-center fundoNav">
+		<li class="nav-item">
+		  <a class="nav-link" href="/"><img src="../public/imagens/logo.png" id="logoNav"></a>
+		</li>
+		<li class="nav-item agendamentoNav">
+			  <a class="nav-link navLink" href="/agendamento">Agendamento</a>
+		</li>
+	</ul>
 	
+	<div class="limitador">
 
 	<%- body %>
 
+	
 	<%- defineContent("scripts") %>
 
 	<div class="footer">
@@ -71,5 +85,7 @@
 			</div>
 		</div>
 	</div>
+
+	</div> <!-- fim div limitador-->
 </body>
 </html>
