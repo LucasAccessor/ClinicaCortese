@@ -6,6 +6,9 @@ body{
 h1{
     font-weight: 700 !important;
 }
+h3{
+    font-weight: 700 !important;
+}
 h5{
     font-weight: 700 !important;
 }
@@ -15,6 +18,13 @@ img{
 }
 a{
     text-decoration: none;
+}
+label{
+    font-weight: 700;
+    display: block;
+}
+input{
+    width: 100%;
 }
 /* fundos */
 .landing{
@@ -43,11 +53,16 @@ a{
     padding: 30px 0px;
     margin: 0px auto;
 }
-/* classes */
 .agendamento{
     padding: 100px 0px;
     text-align: center;
-}
+    background-image: url(../imagens/fundoAgendamento.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}   
+/* classes */
+
 .limitador{
     max-width: 1200px;	
     margin: 0px auto;
@@ -55,19 +70,6 @@ a{
 .titles{
     font-weight: 700;
     color: #1C578B;
-}
-.col-sm-4 {
-    padding: 15px;
-        
-    }
-.fundo-coluna1{
-    background-color: white;
-    padding: 10px;
-        
-}
-.fundo-coluna2{
-    background-color: white;
-    padding: 10px;
 }
 .spccard{
     padding: 10px;	
@@ -96,6 +98,9 @@ a{
 .navLink{
     color: #90C4F1 !important;
 }
+.linhaForm{
+    margin-bottom: 20px;
+}
 /* IDs */
 #logoFooter{
     max-width: 100%;
@@ -107,4 +112,18 @@ a{
 #logoNav{
     max-width: 100%;
     width: 50px;
+}
+#marcarConsulta{
+    font-weight: 700;
+    background-color: #2C3E59;
+    color: #FAFAFA;
+    padding: 7px 10px;
+    border-radius: 10px;
+    margin: 20px;
+}
+/* IDs AGENDAMENTO */
+#observacao[type=text]{
+    height: 200px;
+    resize: none;
+    box-sizing: border-box;
 }

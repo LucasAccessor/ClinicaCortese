@@ -1,4 +1,99 @@
 <div class="agendamento">
-    <h1>Faça seu Agendamento aqui!</h1>
+    <h3 style="margin-bottom: 30px;">Solicite um agendamento</h3>
 
+    <div class="formulario">
+    <div class="container-fluid">
+        <!-- linha 1 -->
+        <div class="row justify-content-md-center linhaForm">
+            <div class="col-md-3">
+                <div class="form-group"><label for="nome">Nome</label></div>
+                <input type="text" id="nome" placeholder="Nome" class="form-control"/>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group"><label for="sobrenome">Sobrenome</label></div>
+                <input type="text" id="sobrenome" placeholder="Sobrenome" class="form-control"/>
+            </div>
+        </div>
+        <!-- linha 2 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-2">
+                <p><label for="cpf">CPF</label></p>
+                <input type="number" id="cpf" placeholder="12344478930" />
+            </div>
+            <div class="col-md-3">
+                <p><label for="email">E-mail</label></p>
+                <input type="email" id="email" placeholder="seuemail@mail.com" />
+            </div>
+            <div class="col-md-2">
+                <p><label for="telefone">Telefone de contato</label></p>
+                <input type="number" id="telefone" placeholder="(11) 11111-1111" />
+            </div>
+        </div>
+        <!-- linha 3 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-2">
+                <p><label for="dataConsulta">Data</label></p>
+                <select name="select">
+                    <option value="valor1" selected>21/02/2021</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <p><label for="profissionalSelect">Profissional</label></p>
+                <select name="profissionalSelect">
+                    <option value="prof0" selected>Selecione o Profissional</option>
+                    <option value="prof1">Dr. Gilberto Cortese</option>
+                    <option value="prof2">Dra. Juliana Cortese</option>
+                    <option value="prof3">Dr. Alexandre Cortese</option>
+                    <option value="prof4">Dr. Fábio Lima</option>
+                  </select>
+            </div>
+            <div class="col-md-1">
+                <p><label for="profissionalSelect">Horário</label></p>
+                <select name="profissionalSelect">
+                    <option value="prof0" selected>00:00</option>
+                    <option value="prof1">08:00</option>
+                    <option value="prof2">08:30</option>
+                    <option value="prof3">10:30</option>
+                    <option value="prof4">14:50</option>
+                  </select>
+            </div>
+        </div>
+        <!-- linha 4 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-4">
+                <p><label for="endereco">Endereço</label></p>
+                <input type="text" id="endereco" placeholder="Rua XYZ" />
+            </div>
+            <div class="col-md-1">
+                <p><label for="numeroEnd">Número</label></p>
+                <input type="number" id="numeroEnd" placeholder="n° 300" />
+            </div>
+            <div class="col-md-1">
+                <p><label for="cepEnd">CEP</label></p>
+                <input type="number" id="cepEnd" placeholder=" 04534050" />
+            </div>
+        </div>
+        <!-- linha 5 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-4">
+                <p><label for="complementoEnd">Complemento</label></p>
+                <input type="text" id="complementoEnd" placeholder="Complemento" />
+            </div>
+            <div class="col-md-2">
+                <p><label for="bairroEnd">Bairro</label></p>
+                <input type="text" id="bairroEnd" placeholder=" Jd. Dentes" />
+            </div>
+        </div>
+        <!-- linha 6 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <p><label for="observacao">Observação</label></p>
+                <input type="text" id="observacao" placeholder="Comentário opcional." />
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <button type="button" id="marcarConsulta">Agende sua consulta</button>
+        </div>
+    </div>
+    </div>
 </div>
