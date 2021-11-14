@@ -98,8 +98,9 @@ input{
 .navLink{
     color: #90C4F1 !important;
 }
-.linhaForm{
-    margin-bottom: 20px;
+.form-group{
+    margin-bottom: 0px !important;
+    margin-top: 10px;
 }
 /* IDs */
 #logoFooter{
