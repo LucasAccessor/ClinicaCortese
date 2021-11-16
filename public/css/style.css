@@ -64,7 +64,7 @@ input{
 /* classes */
 
 .limitador{
-    max-width: 1200px;	
+    max-width: 1400px;	
     margin: 0px auto;
 }
 .titles{
@@ -104,8 +104,9 @@ input{
 }
 /* IDs */
 #logoFooter{
-    max-width: 100%;
+    max-width: 70%;
     margin: 0px auto;
+    margin-bottom: 10px;
 }
 #footerImage{
     margin-right: 50px;
