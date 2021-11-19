@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group"><label for="profissionalSelect">Profissional</label></div>
-                <select name="profissionalSelect" class="form-control">
+                <select name="profissionalSelect" class="form-control" id="profissional">
                     <option value="prof0" selected>Selecione o Profissional</option>
                     <option value="prof1">Dr. Gilberto Cortese</option>
                     <option value="prof2">Dra. Juliana Cortese</option>
@@ -46,8 +46,8 @@
                   </select>
             </div>
             <div class="col-md-2">
-                <div class="form-group"><label for="profissionalSelect">Horário</label></div>
-                <select name="profissionalSelect" class="form-control">
+                <div class="form-group"><label for="horario">Horário</label></div>
+                <select name="horario" class="form-control" id="horario">
                     <option value="prof0" selected>00:00</option>
                     <option value="prof1">08:00</option>
                     <option value="prof2">08:30</option>
@@ -95,3 +95,68 @@
     </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    //DADOS PESSOAIS
+	let nome = document.getElementById("nome");
+	let sobrenome = document.getElementById("sobrenome");
+    let cpf = document.getElementById("cpf");
+    let email = document.getElementById("email");
+    //DADOS CONSULTA
+    let data = document.getElementById("data");
+    let profissional = document.getElementById("profissional");
+    let horario = document.getElementById("horario");
+    //DADOS ENDEREÇO
+    let endereco = document.getElementById("endereco");
+    let numeroEnd = document.getElementById("numeroEnd");
+    let cepEnd = document.getElementById("cepEnd");
+    let complementoEnd = document.getElementById("complementoEnd");
+    let bairroEnd = document.getElementById("bairroEnd");
+    let observacao = document.getElementById("observacao");
+	let marcarConsulta = document.getElementById("marcarConsulta");
+
+	async function criarPessoa() {
+		if (!nome.value) {
+			alert("O nome é obrigatório");
+			return;
+		}
+
+		if (!email.value) {
+			alert("O e-mail é obrigatório");
+			return;
+		}
+
+		// Cria um objeto com os valores que serão enviados para o servidor.
+		let dadosParaEnvio = {
+			nome: nome.value,
+			email: email.value
+		};
+
+		let opcoes = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+		    },
+		    body: JSON.stringify(dadosParaEnvio)
+		};
+
+		try {
+			let response = await fetch("/criarPessoa", opcoes);
+
+			if (response.ok) {
+				// Limpa os campos para facilitar a criação da próxima pessoa.
+				nome.value = "";
+				email.value = "";
+
+				alert("Pessoa criada com sucesso!");
+			} else {
+				alert("Erro ao criar a pessoa!");
+			}
+		} catch (ex) {
+			alert("Erro de rede: " + ex.message);
+		}
+	}
+
+	buttonCriar.onclick = criarPessoa;
+
+</script>
