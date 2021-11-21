@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `consultorio`.`Consultas` (
   `HorarioConsulta` TIME NOT NULL,
   `idCliente` INT NOT NULL,
   `idDentista` INT NOT NULL,
+  `observacaoConsulta` VARCHAR(180) NULL,
   PRIMARY KEY (`idConsultas`),
   INDEX `idColsulta_idCliente_idx` (`idCliente` ASC) VISIBLE,
   INDEX `idConsulta_idDentista_idx` (`idDentista` ASC) VISIBLE,

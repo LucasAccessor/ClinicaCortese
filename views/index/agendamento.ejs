@@ -48,11 +48,11 @@
             <div class="col-md-2">
                 <div class="form-group"><label for="horario">Horário</label></div>
                 <select name="horario" class="form-control" id="horario">
-                    <option value="prof0" selected>00:00</option>
-                    <option value="prof1">08:00</option>
-                    <option value="prof2">08:30</option>
-                    <option value="prof3">10:30</option>
-                    <option value="prof4">14:50</option>
+                    <option value="hor0" selected>00:00</option>
+                    <option value="hor">08:00</option>
+                    <option value="hor2">08:30</option>
+                    <option value="hor3">10:30</option>
+                    <option value="hor4">14:50</option>
                   </select>
             </div>
         </div>
@@ -116,8 +116,19 @@
 	let marcarConsulta = document.getElementById("marcarConsulta");
 
 	async function criarPessoa() {
+        //DADOS PESSOAIS
 		if (!nome.value) {
 			alert("O nome é obrigatório");
+			return;
+		}
+
+		if (!sobrenome.value) {
+			alert("O sobrenome é obrigatório");
+			return;
+		}
+
+		if (isNaN(parseInt(cpf.value))) {
+			alert("O cpf é obrigatório");
 			return;
 		}
 
@@ -126,6 +137,43 @@
 			return;
 		}
 
+        //DADOS CONSULTA
+        if (!data.value) {
+			alert("Escolha uma data válida!");
+			return;
+		}
+
+		if (!profissional.value || profissional.value == "prof0") {
+			alert("Escolha um profissional!");
+			return;
+		}
+
+		if (!horario.value || horario.value == "hor0") {
+			alert("Escolha um horário válido!");
+			return;
+		}
+
+		//DADOS ENDEREço
+        if (!endereco.value) {
+			alert("O endereço é obrigatório");
+			return;
+		}
+
+		if (isNaN(parseInt(numeroEnd.value))) {
+			alert("O número é obrigatório");
+			return;
+		}
+
+		if (isNaN(parseInt(cepEnd.value))) {
+			alert("O CEP é obrigatório");
+			return;
+		}
+
+        if (!bairroEnd.value) {
+			alert("O bairro é obrigatório");
+			return;
+		}
+        
 		// Cria um objeto com os valores que serão enviados para o servidor.
 		let dadosParaEnvio = {
 			nome: nome.value,
@@ -148,15 +196,15 @@
 				nome.value = "";
 				email.value = "";
 
-				alert("Pessoa criada com sucesso!");
+				alert("Agendamento realizado com sucesso!");
 			} else {
-				alert("Erro ao criar a pessoa!");
+				alert("Erro ao agendar!");
 			}
 		} catch (ex) {
 			alert("Erro de rede: " + ex.message);
 		}
 	}
 
-	buttonCriar.onclick = criarPessoa;
+	marcarConsulta.onclick = criarPessoa;
 
 </script>
