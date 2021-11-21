@@ -138,10 +138,15 @@
 		}
 
         //DADOS CONSULTA
+        var d = new Date(data.value);
+        var verificador = d.getDay();
         if (!data.value) {
 			alert("Escolha uma data válida!");
 			return;
 		}
+        if (verificador == 5 || verificador == 1) {
+            alert("Nâo é possível agendar consultas no final de semana");
+        }
 
 		if (!profissional.value || profissional.value == "prof0") {
 			alert("Escolha um profissional!");
