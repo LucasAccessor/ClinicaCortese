@@ -38,11 +38,11 @@
             <div class="col-md-4">
                 <div class="form-group"><label for="profissionalSelect">Profissional</label></div>
                 <select name="profissionalSelect" class="form-control" id="profissional">
-                    <option value="prof0" selected>Selecione o Profissional</option>
-                    <option value="prof1">Dr. Gilberto Cortese</option>
-                    <option value="prof2">Dra. Juliana Cortese</option>
-                    <option value="prof3">Dr. Alexandre Cortese</option>
-                    <option value="prof4">Dr. Fábio Lima</option>
+                    <option selected>Selecione o Profissional</option>
+                    <option>Dr. Gilberto Cortese</option>
+                    <option>Dra. Juliana Cortese</option>
+                    <option>Dr. Alexandre Cortese</option>
+                    <option>Dr. Fábio Lima</option>
                   </select>
             </div>
             <div class="col-md-2">
@@ -115,7 +115,7 @@
     let observacao = document.getElementById("observacao");
 	let marcarConsulta = document.getElementById("marcarConsulta");
 
-	async function criarPessoa() {
+	async function criarAgendamento() {
         //DADOS PESSOAIS
 		if (!nome.value) {
 			alert("O nome é obrigatório");
@@ -182,7 +182,17 @@
 		// Cria um objeto com os valores que serão enviados para o servidor.
 		let dadosParaEnvio = {
 			nome: nome.value,
-			email: email.value
+			sobrenome: sobrenome.value,
+            cpf: cpf.value,
+            email: email.value,
+            data: data.value,
+            profissional: profissional.value,
+            horario: horario.value,
+            endereco: endereco.value,
+            numeroEnd: numeroEnd.value,
+            cepEnd: cepEnd.value,
+            bairroEnd: bairroEnd.value,
+            observacao: observacao.value,
 		};
 
 		let opcoes = {
@@ -194,12 +204,22 @@
 		};
 
 		try {
-			let response = await fetch("/criarPessoa", opcoes);
+			let response = await fetch("/criarAgendamento", opcoes);
 
 			if (response.ok) {
 				// Limpa os campos para facilitar a criação da próxima pessoa.
 				nome.value = "";
-				email.value = "";
+				sobrenome.value = "";
+                cpf.value = "";
+                email.value = "";
+                data.value = "";
+                profissional.value = "";
+                horario.value = "";
+                endereco.value = "";
+                numeroEnd.value = "";
+                cepEnd.value = "";
+                bairroEnd.value = "";
+                observacao.value = "";
 
 				alert("Agendamento realizado com sucesso!");
 			} else {
@@ -209,7 +229,13 @@
 			alert("Erro de rede: " + ex.message);
 		}
 	}
+    async function buscaHorario() {
+        alert(profissional.value);
+        alert(data.value + "       D:< tudo torto");
+        
+    }
 
-	marcarConsulta.onclick = criarPessoa;
+	marcarConsulta.onclick = criarAgendamento;
+    horario.onclick  = buscaHorario;
 
 </script>

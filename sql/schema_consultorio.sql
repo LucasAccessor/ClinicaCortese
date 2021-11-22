@@ -19,7 +19,7 @@ USE `consultorio` ;
 -- Table `consultorio`.`Endereco`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `consultorio`.`Endereco` (
-  `idEndereco` INT NOT NULL,
+  `idEndereco` INT NOT NULL AUTO_INCREMENT,
   `Bairro` VARCHAR(45) NOT NULL,
   `RuaEnd` VARCHAR(45) NOT NULL,
   `NumeroEnd` INT NOT NULL,
@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 -- Table `consultorio`.`Cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `consultorio`.`Cliente` (
-  `idCliente` INT NOT NULL,
+  `idCliente` INT NOT NULL AUTO_INCREMENT,
   `NomeCliente` VARCHAR(45) NOT NULL,
   `SobrenomeCliente` VARCHAR(45) NOT NULL,
   `DataNascCliente` DATETIME NOT NULL,
@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 -- Table `consultorio`.`Dentista`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `consultorio`.`Dentista` (
-  `idDentista` INT NOT NULL,
+  `idDentista` INT NOT NULL AUTO_INCREMENT,
   `NomeDentista` VARCHAR(45) NOT NULL,
   `CRO` INT NOT NULL,
   `CPF` INT NOT NULL,
@@ -70,7 +70,7 @@ ENGINE = InnoDB;
 -- Table `consultorio`.`Consultas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `consultorio`.`Consultas` (
-  `idConsultas` INT NOT NULL,
+  `idConsultas` INT NOT NULL AUTO_INCREMENT,
   `DataConsulta` DATE NOT NULL,
   `HorarioConsulta` TIME NOT NULL,
   `idCliente` INT NOT NULL,
