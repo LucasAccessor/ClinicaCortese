@@ -38,11 +38,10 @@
             <div class="col-md-4">
                 <div class="form-group"><label for="profissionalSelect">Profissional</label></div>
                 <select name="profissionalSelect" class="form-control" id="profissional">
-                    <option selected>Selecione o Profissional</option>
-                    <option>Dr. Gilberto Cortese</option>
-                    <option>Dra. Juliana Cortese</option>
-                    <option>Dr. Alexandre Cortese</option>
-                    <option>Dr. Fábio Lima</option>
+                    <option value="" selected>Selecione o Profissional</option>
+                    <% for (let i = 0; i < dentistas.length; i++) { %>
+                    <option value="<%= dentistas[i].idDentista %>"><%= dentistas[i].NomeDentista %></option>
+                    <% } %>
                   </select>
             </div>
             <div class="col-md-2">
@@ -102,6 +101,7 @@
 	let sobrenome = document.getElementById("sobrenome");
     let cpf = document.getElementById("cpf");
     let email = document.getElementById("email");
+    let telefone = document.getElementById("telefone");
     //DADOS CONSULTA
     let data = document.getElementById("data");
     let profissional = document.getElementById("profissional");
@@ -127,13 +127,18 @@
 			return;
 		}
 
-		if (isNaN(parseInt(cpf.value))) {
+		if (!cpf.value) {
 			alert("O cpf é obrigatório");
 			return;
 		}
 
 		if (!email.value) {
 			alert("O e-mail é obrigatório");
+			return;
+		}
+
+        if (isNaN(parseInt(telefone.value))) {
+			alert("O telefone é obrigatório");
 			return;
 		}
 
@@ -185,12 +190,14 @@
 			sobrenome: sobrenome.value,
             cpf: cpf.value,
             email: email.value,
+            telefone: telefone.value,
             data: data.value,
             profissional: profissional.value,
             horario: horario.value,
             endereco: endereco.value,
             numeroEnd: numeroEnd.value,
             cepEnd: cepEnd.value,
+            complementoEnd: complementoEnd.value,
             bairroEnd: bairroEnd.value,
             observacao: observacao.value,
 		};
@@ -212,6 +219,7 @@
 				sobrenome.value = "";
                 cpf.value = "";
                 email.value = "";
+                telefone.value = "";
                 data.value = "";
                 profissional.value = "";
                 horario.value = "";
@@ -236,6 +244,6 @@
     }
 
 	marcarConsulta.onclick = criarAgendamento;
-    horario.onclick  = buscaHorario;
+    // horario.onclick  = buscaHorario;
 
 </script>
