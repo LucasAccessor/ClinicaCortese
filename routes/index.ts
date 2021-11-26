@@ -4,7 +4,7 @@ import DataUtil = require("../utils/dataUtil");
 class IndexRoute {
 	public async index(req: app.Request, res: app.Response) {
 		
-		res.render("index/index",);
+		res.render("index/index");
 	}
 
 	public async agendamento(req: app.Request, res: app.Response) {
@@ -142,6 +142,105 @@ class IndexRoute {
 
 		res.json(true);
 	}
+
+	// ÁREA DOS FUNCIONÁRIOS
+
+	public async login(req: app.Request, res: app.Response) {
+		
+		let opcoes = {
+			layout: "inside"
+		};
+		res.render("index/login", opcoes);
+		
+	}
+
+	public async registros(req: app.Request, res: app.Response) {
+		
+		let agenda: any[];
+
+		await app.sql.connect(async (sql) => {
+
+			// Todas os comandos SQL devem ser executados aqui dentro do app.sql.connect().
+
+			agenda = await sql.query(`SELECT agendamento.idAgendamento,
+					agendamento.NomeCliente,
+					agendamento.SobrenomeCliente,
+					agendamento.CPF,
+					agendamento.EmailCliente,
+					agendamento.TelefoneCelular,
+					agendamento.Bairro,
+					agendamento.RuaEnd,
+					agendamento.NumeroEnd,
+					agendamento.ComplementoEnd,
+					agendamento.CEP,
+					agendamento.ObservacaoConsulta,
+					-- date_format(agendamento.DataConsulta, '%d/%M/%Y') AS DataConsulta,
+					agendamento.DataConsulta,
+					agendamento.NomeDentista,
+					agendamento.idHorario,
+					horario.Horario
+				FROM agendamento INNER JOIN horario ON agendamento.idHorario = horario.idHorario
+				ORDER BY agendamento.DataConsulta ASC, agendamento.idHorario ASC`);
+
+		});
+
+		let opcoes = {
+			layout: "inside",
+			agenda: agenda
+		};
+
+		res.render("index/registros", opcoes);
+		
+	}
+
+	/*@app.http.post()
+	public async registrarLivro(req: app.Request, res: app.Response) {
+		// Os dados enviados via POST ficam dentro de req.body
+		let livro = req.body;
+
+		// É sempre muito importante validar os dados do lado do servidor,
+		// mesmo que eles tenham sido validados do lado do cliente!!!
+		if (!livro) {
+			res.status(400);
+			res.json("Dados inválidos");
+			return;
+		}
+
+		if (!livro.titulo) {
+			res.status(400);
+			res.json("Título inválido");
+			return;
+		}
+
+		if (!livro.ano) {
+			res.status(400);
+			res.json("Ano inválido");
+			return;
+		}
+
+		if (!livro.autor) {
+			res.status(400);
+			res.json("Autor inválido");
+			return;
+		}
+
+		if (!livro.paginas) {
+			res.status(400);
+			res.json("Páginas inválidas");
+			return;
+		}
+
+		await app.sql.connect(async (sql) => {
+
+			// Todas os comandos SQL devem ser executados aqui dentro do app.sql.connect().
+
+			// As interrogações serão substituídas pelos valores passados ao final, na ordem passada.
+			await sql.query("INSERT INTO livro (titulo, ano, autor, paginas) VALUES (?, ?, ?, ?)", [livro.titulo, livro.ano, livro.autor, livro.paginas]);
+
+		});
+
+		res.json(true);
+	} */
 }
 
 export = IndexRoute;

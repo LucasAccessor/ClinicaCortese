@@ -1,0 +1,101 @@
+<h1>
+	AGENDA DE CONSULTAS
+</h1>
+
+
+<hr style="margin-top: 20px !important;"/>
+
+<% for (let i = 0; i < agenda.length; i++) { %>
+<div class="divRegistro" <% if(i%2 == 0){%> style="background-color: #bdbfc4;" <% } %> >
+
+    <div class="container-fluid" style="text-align: left;">
+        <!-- linha 1 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <h6>Nome do Paciente: </h6>
+                <p><%= agenda[i].NomeCliente %> <%= agenda[i].SobrenomeCliente %> </p>
+            </div>
+            <div class="col-md-2">
+                <h6>CPF: </h6>
+                <p><%= agenda[i].CPF %> </p>
+            </div>
+        </div>
+        <!-- linha 4 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-4">
+                <h6>Endereço Paciente: </h6>
+                <p><%= agenda[i].RuaEnd %> </p>
+            </div>
+            <div class="col-md-2">
+                <h6>CEP: </h6>
+                <p><%= agenda[i].CEP %> </p>
+            </div>
+            <div class="col-md-2">
+                <h6>Nº: </h6>
+                <p><%= agenda[i].NumeroEnd %> </p>
+            </div>
+        </div>
+        <!-- linha 5 -->
+        <div class="row justify-content-md-center" >
+            <div class="col-md-3">
+                <h6>Bairro: </h6>
+                <p><%= agenda[i].Bairro %> </p>
+            </div>
+            <div class="col-md-5">
+                <% if(agenda[i].ComplementoEnd){ %>
+                    <h6>Complemento: </h6>
+                    <p><%= agenda[i].ComplementoEnd %> </p>
+                <% } %>
+            </div>
+            
+        </div>
+        <!-- linha 2 -->
+        <div class="row justify-content-md-center" style="text-align: left;">
+            <div class="col-md-6">
+                <h6>E-mail: </h6>
+                <p><%= agenda[i].EmailCliente %> </p>
+            </div>
+            <div class="col-md-2">
+                <h6>Celular: </h6>
+                <p><%= agenda[i].TelefoneCelular %> </p>
+            </div>
+        </div>
+        <!-- linha 3 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-2">
+                <h6>Data: </h6>
+                <p><%= agenda[i].DataConsulta.toLocaleDateString("pt-BR") %> </p>
+            </div>
+            <div class="col-md-4">
+                <h6>Profissional: </h6>
+                <p><%= agenda[i].NomeDentista %> </p>
+            </div>
+            <div class="col-md-2">
+                <h6>Horário: </h6>
+                <p><%= agenda[i].Horario %> </p>
+            </div>
+        </div>
+        <!-- linha 6 -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                <% if(agenda[i].ObservacaoConsulta){ %>
+                    <h6>Observação do Paciente: </h6>
+                    <p><%= agenda[i].ObservacaoConsulta %> </p>
+                <% } %>
+            </div>
+        </div>
+        
+    </div>
+
+    </div>
+	
+
+	<hr />
+
+</div>
+
+<script>
+
+</script>
+
+<% } %>

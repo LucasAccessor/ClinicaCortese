@@ -142,15 +142,28 @@
 			return;
 		}
 
-        //DADOS CONSULTA
+        //VERIFICAÇÃO DATA
+        var hoje = new Date();
+
+        var presente = hoje.getFullYear()+'-'+(hoje.getMonth()+1)+'-'+hoje.getDate();
+
         var d = new Date(data.value);
         var verificador = d.getDay();
+
+        //DADOS CONSULTA
         if (!data.value) {
 			alert("Escolha uma data válida!");
 			return;
 		}
+        if (data.value < presente) {
+            alert("Não é possível agendar em dias passados!");
+            data.value = "";
+            return;
+        }
         if (verificador == 5 || verificador == 1) {
             alert("Nâo é possível agendar consultas no final de semana");
+            data.value = "";
+            return;
         }
 
 		if (!profissional.value || profissional.value == "") {
