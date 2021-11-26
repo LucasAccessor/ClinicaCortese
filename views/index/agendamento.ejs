@@ -39,19 +39,19 @@
                 <div class="form-group"><label for="profissionalSelect">Profissional</label></div>
                 <select name="profissionalSelect" class="form-control" id="profissional">
                     <option value="" selected>Selecione o Profissional</option>
-                    <% for (let i = 0; i < dentistas.length; i++) { %>
-                    <option value="<%= dentistas[i].idDentista %>"><%= dentistas[i].NomeDentista %></option>
-                    <% } %>
+                    <option>Dr. Gilberto Cortese</option>
+                    <option>Dra. Juliana Cortese</option>
+                    <option>Dr. Alexandre Cortese</option>
+                    <option>Dr. Fábio Lima</option>
                   </select>
             </div>
             <div class="col-md-2">
                 <div class="form-group"><label for="horario">Horário</label></div>
                 <select name="horario" class="form-control" id="horario">
                     <option value="hor0" selected>00:00</option>
-                    <option value="hor">08:00</option>
-                    <option value="hor2">08:30</option>
-                    <option value="hor3">10:30</option>
-                    <option value="hor4">14:50</option>
+                    <% for (let i = 0; i < horarios.length; i++) { %>
+                    <option value="<%= horarios[i].idHorario %>"><%= horarios[i].Horario %></option>
+                    <% } %>
                   </select>
             </div>
         </div>
@@ -153,7 +153,7 @@
             alert("Nâo é possível agendar consultas no final de semana");
         }
 
-		if (!profissional.value || profissional.value == "prof0") {
+		if (!profissional.value || profissional.value == "") {
 			alert("Escolha um profissional!");
 			return;
 		}
@@ -215,7 +215,7 @@
 
 			if (response.ok) {
 				// Limpa os campos para facilitar a criação da próxima pessoa.
-				nome.value = "";
+                nome.value = "";
 				sobrenome.value = "";
                 cpf.value = "";
                 email.value = "";
@@ -229,6 +229,7 @@
                 bairroEnd.value = "";
                 observacao.value = "";
 
+                
 				alert("Agendamento realizado com sucesso!");
 			} else {
 				alert("Erro ao agendar!");

@@ -20,7 +20,7 @@ USE `consultorio` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `consultorio`.`Horario` (
   `idHorario` INT NOT NULL,
-  `Horario` TIME NOT NULL,
+  `Horario` VARCHAR(5) NOT NULL,
   PRIMARY KEY (`idHorario`))
 ENGINE = InnoDB;
 
@@ -53,6 +53,29 @@ CREATE TABLE IF NOT EXISTS `consultorio`.`Agendamento` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- INSERE HORARIOS DISPONÍVEIS
+USE CONSULTORIO;
+INSERT INTO horario (idHorario, Horario) VALUES 
+	-- MANHA
+		(1, '08:00'),
+		(2, '08:30'),
+		(3, '09:00'),
+		(4, '09:30'),
+		(5, '10:00'),
+		(6, '10:30'),
+		(7, '11:00'),
+		(8, '11:30'),
+		(9, '12:00'),
+    -- TARDE
+		(10, '14:30'),
+		(11, '15:00'),
+		(12, '15:30'),
+		(13, '16:00'),
+		(14, '16:30'),
+		(15, '17:00'),
+		(16, '17:30'),
+		(17, '18:00');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

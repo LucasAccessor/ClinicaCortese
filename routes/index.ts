@@ -8,22 +8,20 @@ class IndexRoute {
 	}
 
 	public async agendamento(req: app.Request, res: app.Response) {
-		let dentistas: any[] =[ { idDentista: 1, NomeDentista: "jdfjkdk" } ];
-		let horarios: any[] = [ { id: 1, hora: '08:30' }, { id: 2, hora: '10:30' } ];
+		let horarios: any[];
 
 		await app.sql.connect(async (sql) => {
 
 			// Todas os comandos SQL devem ser executados aqui dentro do app.sql.connect().
-
+			horarios = await sql.query("SELECT idHorario, Horario FROM horario");
 			//dentistas = await sql.query("SELECT idDentista, NomeDdestista FROM consultas WHERE profissional = ? AND dataConsulta = ?" [datas.profissional, datas.data]);
 
 		});
 
 		let opcoes = {
 			titulo: "Agendamento",
-			dentistas: dentistas,
 			horarios: horarios
-		}
+		};
 
 		res.render("index/agendamento", opcoes);
 	}
@@ -135,9 +133,8 @@ class IndexRoute {
 			// Todas os comandos SQL devem ser executados aqui dentro do app.sql.connect().
 
 			// As interrogações serão substituídas pelos valores passados ao final, na ordem passada.
-			await sql.query("INSERT INTO Endereco (Bairro, RuaEnd, NumeroEnd, ComplementoEnd, CEP) VALUES (?, ?, ?, ?, ?)", [dados.bairroEnd, dados.endereco, dados.numeroEnd, dados.complementoEnd, dados.cepEnd]);
+			await sql.query("INSERT INTO agendamento (NomeCliente, SobrenomeCliente, CPF, EmailCliente, TelefoneCelular, Bairro, RuaEnd, NumeroEnd, ComplementoEnd, CEP, DataConsulta, NomeDentista, ObservacaoConsulta, idHorario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [dados.nome, dados.sobrenome, dados.cpf, dados.email, dados.telefone, dados.bairroEnd, dados.endereco, dados.numeroEnd, dados.complementoEnd, dados.cepEnd, dados.data, dados.profissional, dados.observacao, dados.horario]);
 			// select id
-			await sql.query("INSERT INTO Cliente (NomeCliente, SobrenomeCliente, CPF, EmailCliente, TelefoneCelular) VALUES (?, ?, ?, ?, ?)", [dados.nome, dados.sobrenome, dados.cpf, dados.email, dados.telefone]);
 			//await sql.query("INSERT INTO Consultas (DataConsulta, HorarioConsulta, idCliente, idDentista) VALUES (?, ?, 1, 2)", [dados.data, dados.horario]);
 
 
