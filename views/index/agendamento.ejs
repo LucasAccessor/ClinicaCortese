@@ -7,26 +7,26 @@
         <div class="row justify-content-md-center linhaForm">
             <div class="col-md-4">
                 <div class="form-group"><label for="nome">Nome</label></div>
-                <input type="text" id="nome" placeholder="Nome" class="form-control"/>
+                <input type="text" id="nome" placeholder="Nome" class="form-control" maxlength="45"/>
             </div>
             <div class="col-md-4">
                 <div class="form-group"><label for="sobrenome">Sobrenome</label></div>
-                <input type="text" id="sobrenome" placeholder="Sobrenome" class="form-control"/>
+                <input type="text" id="sobrenome" placeholder="Sobrenome" class="form-control" maxlength="45"/>
             </div>
         </div>
         <!-- linha 2 -->
         <div class="row justify-content-md-center">
             <div class="col-md-2">
                 <div class="form-group"><label for="cpf">CPF</label></div>
-                <input type="number" id="cpf" placeholder="12344478930" class="form-control"/>
+                <input type="number" id="cpf" placeholder="12344478930" class="form-control" maxlength="11"/>
             </div>
             <div class="col-md-4">
                 <div class="form-group"><label for="email">E-mail</label></div>
-                <input type="email" id="email" placeholder="seuemail@mail.com" class="form-control"/>
+                <input type="email" id="email" placeholder="seuemail@mail.com" class="form-control" maxlength="45"/>
             </div>
             <div class="col-md-2">
                 <div class="form-group"><label for="telefone">Telefone</label></div>
-                <input type="number" id="telefone" placeholder="(11) 11111-1111" class="form-control"/>
+                <input type="number" id="telefone" placeholder="(11) 11111-1111" class="form-control" maxlength="12"/>
             </div>
         </div>
         <!-- linha 3 -->
@@ -50,8 +50,6 @@
                 <select name="horario" class="form-control" id="horario">
                     <option value="hor0" selected>00:00</option>
                     <% for (let i = 0; i < horarios.length; i++) { %>
-                        <%// if(cadastros[i].DataConsulta === data.getDate && cadastros[i].idHorario === horarios[i].idHorario){ %>
-                            <% // i++ } else { %>
                     <option value="<%= horarios[i].idHorario %>"><%= horarios[i].Horario %></option>
                     <% } %>
                   </select>
@@ -61,33 +59,33 @@
         <div class="row justify-content-md-center">
             <div class="col-md-4">
                 <div class="form-group"><label for="endereco">Endereço</label></div>
-                <input type="text" id="endereco" placeholder="Rua XYZ" class="form-control"/>
+                <input type="text" id="endereco" placeholder="Rua XYZ" class="form-control" maxlength="45"/>
             </div>
             <div class="col-md-2">
                 <div class="form-group"><label for="numeroEnd">Número</label></div>
-                <input type="number" id="numeroEnd" placeholder="n° 300" class="form-control"/>
+                <input type="number" id="numeroEnd" placeholder="n° 300" class="form-control" maxlength="45"/>
             </div>
             <div class="col-md-2">
                 <div class="form-group"><label for="cepEnd">CEP</label></div>
-                <input type="number" id="cepEnd" placeholder=" 04534050" class="form-control"/>
+                <input type="number" id="cepEnd" placeholder=" 04534050" class="form-control" maxlength="8"/>
             </div>
         </div>
         <!-- linha 5 -->
         <div class="row justify-content-md-center">
             <div class="col-md-5">
                 <div class="form-group"><label for="complementoEnd">Complemento</label></div>
-                <input type="text" id="complementoEnd" placeholder="Complemento" class="form-control"/>
+                <input type="text" id="complementoEnd" placeholder="Complemento" class="form-control" maxlength="45"/>
             </div>
             <div class="col-md-3">
                 <div class="form-group"><label for="bairroEnd">Bairro</label></div>
-                <input type="text" id="bairroEnd" placeholder=" Jd. Dentes" class="form-control"/>
+                <input type="text" id="bairroEnd" placeholder=" Jd. Dentes" class="form-control" maxlength="45"/>
             </div>
         </div>
         <!-- linha 6 -->
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="form-group"><label for="observacao">Observação</label></div>
-                <input type="text" id="observacao" placeholder="Comentário opcional." class="form-control"/>
+                <textarea id="observacao" placeholder="Comentário opcional." class="form-control" rows="10" style="resize: none;" maxlength="243"></textarea>
             </div>
         </div>
         <div class="row justify-content-md-center">
@@ -184,15 +182,6 @@
 			return;
 		}
         
-        //verifica horario
-        for (let i = 0; i < cadastros.length; i++){
-        if(data.value === cadastros[i].DataConsulta && horario.value === cadastros[i].idHorario && profissional.value === cadastros[i].NomeDentista) {
-            alert("O horário, nesta data, com este profissional não está disponível!");
-			return;
-            horario.value = "";
-        }
-
-        }
 		//DADOS ENDEREço
         if (!endereco.value) {
 			alert("O endereço é obrigatório");
@@ -255,6 +244,7 @@
                 horario.value = "";
                 endereco.value = "";
                 numeroEnd.value = "";
+                complementoEnd.value = "";
                 cepEnd.value = "";
                 bairroEnd.value = "";
                 observacao.value = "";
@@ -262,31 +252,15 @@
                 
 				alert("Agendamento realizado com sucesso!");
 			} else {
-				alert("Erro ao agendar!");
+                let msg = await response.json();
+
+                alert("Erro ao agendar: " + msg);
 			}
 		} catch (ex) {
 			alert("Erro de rede: " + ex.message);
 		}
 	}
-    async function buscaHorario() {
-        let apresentaHorario = 0;
-        let horario = document.getElementById("horario");
-        //verifica horario
-        /*for (let i = 0; i < horarios.length; i++) {
-            if(cadastros[i].DataConsulta === data.getDate && cadastros[i].idHorario === horarios[i].idHorario){
-                    i++;
-            } else {
-                horario.option
-                //<option value="<%= //horarios[i].idHorario %>"><%= //horarios[i].Horario %></option>
-            }
-        }
-*/
-        alert(horario.value);
-
-        apresentaHorario++;
-    }
 
 	marcarConsulta.onclick = criarAgendamento;
-    //horario.onclick  = buscaHorario;
 
 </script>

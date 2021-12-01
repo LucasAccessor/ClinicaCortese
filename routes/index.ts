@@ -9,27 +9,17 @@ class IndexRoute {
 
 	public async agendamento(req: app.Request, res: app.Response) {
 		let horarios: any[];
-		let cadastros: any[];
 
 		await app.sql.connect(async (sql) => {
 
 			// Todas os comandos SQL devem ser executados aqui dentro do app.sql.connect().
-			horarios = await sql.query("SELECT idHorario, Horario FROM horario")
-			cadastros = await sql.query(`SELECT 
-					agendamento.idAgendamento,
-					agendamento.DataConsulta,
-					agendamento.NomeDentista,
-					agendamento.idHorario,
-					horario.Horario
-				FROM agendamento INNER JOIN horario ON agendamento.idHorario = horario.idHorario
-				ORDER BY agendamento.DataConsulta ASC, agendamento.idHorario ASC`)
+			horarios = await sql.query("SELECT idHorario, Horario FROM horario");
 			
 		});
 
 		let opcoes = {
 			titulo: "Agendamento",
-			horarios: horarios,
-			cadastros: cadastros
+			horarios: horarios
 		};
 
 		res.render("index/agendamento", opcoes);
@@ -123,19 +113,41 @@ class IndexRoute {
 			return;
 		}
 
+		let erro: string = null;
+
 		await app.sql.connect(async (sql) => {
 
 			// Todas os comandos SQL devem ser executados aqui dentro do app.sql.connect().
 
 			// As interrogações serão substituídas pelos valores passados ao final, na ordem passada.
-			await sql.query("INSERT INTO agendamento (NomeCliente, SobrenomeCliente, CPF, EmailCliente, TelefoneCelular, Bairro, RuaEnd, NumeroEnd, ComplementoEnd, CEP, DataConsulta, NomeDentista, ObservacaoConsulta, idHorario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [dados.nome, dados.sobrenome, dados.cpf, dados.email, dados.telefone, dados.bairroEnd, dados.endereco, dados.numeroEnd, dados.complementoEnd, dados.cepEnd, dados.data, dados.profissional, dados.observacao, dados.horario]);
+			try {
+				await sql.query("INSERT INTO agendamento (NomeCliente, SobrenomeCliente, CPF, EmailCliente, TelefoneCelular, Bairro, RuaEnd, NumeroEnd, ComplementoEnd, CEP, DataConsulta, NomeDentista, ObservacaoConsulta, idHorario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [dados.nome, dados.sobrenome, dados.cpf, dados.email, dados.telefone, dados.bairroEnd, dados.endereco, dados.numeroEnd, dados.complementoEnd, dados.cepEnd, dados.data, dados.profissional, dados.observacao, dados.horario]);
+			} catch (ex: any) {
+				if (ex.code) {
+					switch (ex.code) {
+						case "ER_DUP_ENTRY":
+							erro = "Data e hora ocupadas";
+							break;
+						default:
+							erro = (ex.message || ex.toString());
+							break;
+					}
+				} else {
+					erro = (ex.message || ex.toString());
+				}
+			}
 			// select id
 			//await sql.query("INSERT INTO Consultas (DataConsulta, HorarioConsulta, idCliente, idDentista) VALUES (?, ?, 1, 2)", [dados.data, dados.horario]);
 
 
 		});
 
-		res.json(true);
+		if (erro) {
+			res.status(400);
+			res.json(erro);
+		} else {
+			res.json(true);
+		}
 	}
 
 	// ÁREA DOS FUNCIONÁRIOS

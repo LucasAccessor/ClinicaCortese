@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `consultorio`.`Agendamento` (
   `idHorario` INT NOT NULL,
   PRIMARY KEY (`idAgendamento`),
   INDEX `idAgendamento_idHorario_idx` (`idHorario` ASC) VISIBLE,
+  UNIQUE KEY `DataConsulta_idHorario_UN` (`DataConsulta`,`NomeDentista`,`idHorario`),
   CONSTRAINT `idAgendamento_idHorario`
     FOREIGN KEY (`idHorario`)
     REFERENCES `consultorio`.`Horario` (`idHorario`)
