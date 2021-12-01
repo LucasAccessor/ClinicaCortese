@@ -50,6 +50,8 @@
                 <select name="horario" class="form-control" id="horario">
                     <option value="hor0" selected>00:00</option>
                     <% for (let i = 0; i < horarios.length; i++) { %>
+                        <%// if(cadastros[i].DataConsulta === data.getDate && cadastros[i].idHorario === horarios[i].idHorario){ %>
+                            <% // i++ } else { %>
                     <option value="<%= horarios[i].idHorario %>"><%= horarios[i].Horario %></option>
                     <% } %>
                   </select>
@@ -94,6 +96,7 @@
     </div>
     </div>
 </div>
+
 
 <script type="text/javascript">
     //DADOS PESSOAIS
@@ -145,9 +148,10 @@
         //VERIFICAÇÃO DATA
         var hoje = new Date();
 
-        var presente = hoje.getFullYear()+'-'+(hoje.getMonth()+1)+'-'+hoje.getDate();
+        var presente = hoje.getFullYear()+'-'+(hoje.getMonth()+1)+'-'+(hoje.getDate());
 
         var d = new Date(data.value);
+        var hoje = new Date(presente);
         var verificador = d.getDay();
 
         //DADOS CONSULTA
@@ -155,14 +159,18 @@
 			alert("Escolha uma data válida!");
 			return;
 		}
-        if (data.value < presente) {
-            alert("Não é possível agendar em dias passados!");
-            data.value = "";
+        if (d < hoje) {
+            alert("Não é possível agendar em dias passados ou no dia de hoje!");
+            alert(presente);
+            alert(hoje);
+            alert(data.value);
             return;
         }
         if (verificador == 5 || verificador == 1) {
             alert("Nâo é possível agendar consultas no final de semana");
             data.value = "";
+            alert(d);
+            alert(verificador);
             return;
         }
 
@@ -175,7 +183,16 @@
 			alert("Escolha um horário válido!");
 			return;
 		}
+        
+        //verifica horario
+        for (let i = 0; i < cadastros.length; i++){
+        if(data.value === cadastros[i].DataConsulta && horario.value === cadastros[i].idHorario && profissional.value === cadastros[i].NomeDentista) {
+            alert("O horário, nesta data, com este profissional não está disponível!");
+			return;
+            horario.value = "";
+        }
 
+        }
 		//DADOS ENDEREço
         if (!endereco.value) {
 			alert("O endereço é obrigatório");
@@ -252,12 +269,24 @@
 		}
 	}
     async function buscaHorario() {
-        alert(profissional.value);
-        alert(data.value + "       D:< tudo torto");
-        
+        let apresentaHorario = 0;
+        let horario = document.getElementById("horario");
+        //verifica horario
+        /*for (let i = 0; i < horarios.length; i++) {
+            if(cadastros[i].DataConsulta === data.getDate && cadastros[i].idHorario === horarios[i].idHorario){
+                    i++;
+            } else {
+                horario.option
+                //<option value="<%= //horarios[i].idHorario %>"><%= //horarios[i].Horario %></option>
+            }
+        }
+*/
+        alert(horario.value);
+
+        apresentaHorario++;
     }
 
 	marcarConsulta.onclick = criarAgendamento;
-    // horario.onclick  = buscaHorario;
+    //horario.onclick  = buscaHorario;
 
 </script>
